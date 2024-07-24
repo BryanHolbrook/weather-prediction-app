@@ -1,3 +1,4 @@
+from weather_model import WeatherDataORM, session
 import openmeteo_requests
 import requests_cache
 import pandas as pd
@@ -155,6 +156,36 @@ class WeatherData:
         if self.daily_dataframe is None:
             raise ValueError("Daily dataframe is not available. Call process_data() first.")
         return self.daily_dataframe
+
+    # Method that populates table with WeatherData. Call on main.py
+    def save_to_db(self):
+        if self.daily_dataframe is None:
+            raise ValueError("No data to save. Call fetch_data() and process_data() first.")
+
+        for _, row in self.daily_dataframe.iterrows():
+            weather_data = WeatherDataORM(
+                latitude=row['latitude'],
+                longitude=row['longitude'],
+
+                month=row['month'],
+                day=row['day'],
+                year=row['year'],
+
+                five_year_avg_temp_for_july_10=row['five_year_avg_temp_for_july_10'],
+                five_year_min_temp_for_july_10=row['five_year_min_temp_for_july_10'],
+                five_year_max_temp_for_july_10=row['five_year_max_temp_for_july_10'],
+
+                five_year_avg_wind_speed_for_july_10=row['five_year_avg_wind_speed_for_july_10'],
+                five_year_min_wind_speed_for_july_10=row['five_year_min_wind_speed_for_july_10'],
+                five_year_max_wind_speed_for_july_10=row['five_year_max_wind_speed_for_july_10'],
+
+                five_year_sum_precip_for_july_10=row['five_year_sum_precip_for_july_10'],
+                five_year_min_precip_for_july_10=row['five_year_min_precip_for_july_10'],
+                five_year_max_precip_for_july_10=row['five_year_max_precip_for_july_10']
+            )
+            session.add(weather_data)
+
+        session.commit()
 
 # Example usage
 latitude = 34.1722
