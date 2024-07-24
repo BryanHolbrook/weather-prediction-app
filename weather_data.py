@@ -151,7 +151,6 @@ class WeatherData:
         five_year_max_precip = july_10_max_precip_df['precipitation_sum'].max()
         return five_year_max_precip
 
-
     def get_daily_dataframe(self):
         if self.daily_dataframe is None:
             raise ValueError("Daily dataframe is not available. Call process_data() first.")
@@ -170,5 +169,22 @@ weather_data.fetch_data()
 weather_data.process_data()
 daily_dataframe = weather_data.get_daily_dataframe()
 
-print(daily_dataframe)
-daily_dataframe.to_csv('weather_data_test.csv', encoding='utf-8')
+# Individual functions to confirm correct data being returned from WeatherData class methods
+five_year_avg_temp = daily_dataframe['five_year_avg_temp_for_july_10'].head(1)
+five_year_max_wind_speed = daily_dataframe['five_year_max_wind_speed_for_july_10'].head(1)
+five_year_sum_precipitation = daily_dataframe['five_year_sum_precip_for_july_10'].head(1)
+
+# Print functions to review output in run environment
+# print(five_year_avg_temp)
+# print(five_year_max_wind_speed)
+# print(five_year_sum_precipitation)
+
+# print(daily_dataframe[["temperature_2m_max", "temperature_2m_min"]].head())
+# print(daily_dataframe.head())
+
+# To CSV Functions to review data output
+
+#five_year_avg_temp.to_csv('five_year_avg_temp_for_july_10.csv', encoding='utf-8')
+#five_year_max_wind_speed.to_csv('five_year_max_wind_speed_for_july_10.csv', encoding='utf-8')
+#five_year_sum_precipitation.to_csv('five_year_sum_precip_for_july_10.csv', encoding='utf-8')
+#daily_dataframe.to_csv('weather_data_test.csv', encoding='utf-8')
