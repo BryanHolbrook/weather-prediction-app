@@ -157,7 +157,7 @@ class WeatherData:
             raise ValueError("Daily dataframe is not available. Call process_data() first.")
         return self.daily_dataframe
 
-    # Method that populates table with WeatherData. Call on main.py
+    # Method populating table with WeatherData. Call on main.py
     def save_to_db(self):
         if self.daily_dataframe is None:
             raise ValueError("No data to save. Call fetch_data() and process_data() first.")
@@ -187,13 +187,14 @@ class WeatherData:
 
         session.commit()
 
-# Example usage
+# Event location data and 5 year weather data range
 latitude = 34.1722
 longitude = -118.379
 start_date = "2019-07-10"
 end_date = "2024-07-10"
 daily_params = ["temperature_2m_max", "temperature_2m_min", "temperature_2m_mean", "precipitation_sum",
                 "wind_speed_10m_max"]
+
 
 weather_data = WeatherData(latitude, longitude, start_date, end_date, daily_params)
 weather_data.fetch_data()
