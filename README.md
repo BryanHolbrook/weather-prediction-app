@@ -1,6 +1,6 @@
 # Weather Prediction Application
 
-Weather Prediction Application built in Python that uses the open-meteo.com 
+Weather Prediction Application built in Python. The application uses the open-meteo.com 
 public API to collect historical weather information for North Hollywood, CA 
 from the previous five years, 2019-2024, to predict potential weather for the 
 date of July 10th, 2024. The date may be updated to predict additional weather averages.
