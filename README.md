@@ -1,5 +1,5 @@
 # Weather Prediction Application
-Weather Prediction Application built-in Python using the open-meteo public API.
+Weather Prediction Application built in Python  SQL AlchemyORM and inegrated with SQLlite and the open-meteo public API for live weather data.
 
 Weather Prediction Application built in Python. The application uses the open-meteo.com 
 public API to collect historical weather information for North Hollywood, CA 
